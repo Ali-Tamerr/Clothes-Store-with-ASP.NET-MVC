@@ -1,0 +1,61 @@
+﻿@using Microsoft.EntityFrameworkCore
+@model IEnumerable<ITI_Graduation_Project.Models.Product>
+@{
+    ViewData["Title"] = "Client Side";
+    var currentCustomerId = Context.Session.GetInt32("CustomerId");
+    var currentCustomer = ViewBag.CurrentCustomer as ITI_Graduation_Project.Models.Customer;
+}
+
+<div>
+    
+    <div style="min-width:100%; display:flex; justify-content:end; padding: 20px 10px">
+        <div class="">
+            @if (currentCustomer != null)
+            {
+                <div class="" style="display:flex; gap:10px; align-items:end;">
+                    <a class="" style="font-size:16px;" asp-controller="Account" asp-action="Logout">Logout</a>
+                    <p style="font-size:20px; color:black; border-radius:10px; border:solid black 1px; background-color:white; padding:5px 15px; cursor:default; margin:0;">
+                       Hello, @currentCustomer.FullName
+                    </p>
+                </div>
+            }
+            else
+            {
+                <a class="card text-decoration-none text-dark px-3 py-2" asp-controller="Home" asp-action="Login"> Login </a>
+            }
+        </div>
+    </div>
+
+    <div class="mt-4" style="display:grid;grid-template-columns:repeat(4,1fr);gap:20px;">
+        @foreach (var p in Model)
+        {
+            <div class="card" style="padding:10px;">
+                <img src="@p.ImagePath" class="card-img-top" style="max-height:150px;object-fit:cover;" />
+                <div class="card-body" style="display:flex; flex-direction:column; justify-content:space-between; gap:20px">
+                    <div>
+                        <h5 class="card-title">@p.Name</h5>
+                        <p class="card-text" style="margin:0; font-size:15px;">@p.Description</p>
+                        <p class="card-text" style="margin:0;"><small class="text-muted">@p.Category.Name</small></p>
+                    </div>
+                    @if (currentCustomer != null && p.Customers.Any(c => c.Id == currentCustomer.Id))
+                    {
+                        <div style="gap:10px; display:flex;">
+                            <button class="btn btn-outline-primary" type="button" disabled>Bought</button>
+                            <a asp-controller="Home" asp-action="ClientProductDetails" asp-route-id="@p.Id" class="btn btn-link" style="gap:10px; display:flex;"><i class="bi bi-list-ul" title="Details"></i>Details</a>
+                        </div>
+
+
+                    }
+                    else
+                    {
+                        <form asp-controller="Home" asp-action="Buy" method="post" style="gap:10px; display:flex;">
+                            <input type="hidden" name="id" value="@p.Id" />
+                            <button class="btn btn-primary" type="submit" style="gap:10px; display:flex;"><i class="bi bi-cart2"></i>Buy</button>
+                            <a asp-controller="Home" asp-action="ClientProductDetails" asp-route-id="@p.Id" class="btn btn-link" style="gap:10px; display:flex;"><i class="bi bi-list-ul" title="Details"></i>Details</a>
+                        </form>
+                    }
+                </div>
+            </div>
+        }
+    </div>
+</div>

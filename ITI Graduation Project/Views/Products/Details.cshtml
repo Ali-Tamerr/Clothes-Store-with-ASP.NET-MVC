@@ -1,0 +1,79 @@
+﻿@model ITI_Graduation_Project.Models.Product
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Product</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">Image</dt>
+        <dd class="col-sm-10">
+            <img src="@Model.ImagePath" alt="Product image" style="max-width:300px;max-height:300px;" />
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Category)
+        </dt>
+        <dd class="col-sm-10">
+            <a asp-controller="Categories" asp-action="Details" asp-route-id="@Model.Category.Id">  @Html.DisplayFor(model => model.Category.Name)</a>
+        </dd>
+        <dt class="col-sm-2">
+            For Age
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ForAge)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@if (Model.Customers != null && Model.Customers.Any())
+{
+    <h3 class="mt-4">Customers who bought this product</h3>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Full Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var c in Model.Customers)
+            {
+                <tr>
+                    <td><a asp-controller="Customers" asp-action="Details" asp-route-id="@c.Id">@c.FullName</a></td>
+                    <td>@c.Email</td>
+                    <td>
+                        @if (c.Phone != null)
+                        {
+                            @c.Phone
+                        }
+                        else
+                        {
+                            <text>N/A</text>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

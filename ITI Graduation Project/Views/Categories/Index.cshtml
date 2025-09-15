@@ -1,0 +1,62 @@
+﻿@model IEnumerable<ITI_Graduation_Project.Models.Category>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<div class="mb-4" style="display:flex; gap:10px;  align-items:center; justify-content:space-between;">
+    <form method="get" asp-controller="Categories" asp-action="Index" class="col-4">
+        <div class="input-group  ">
+            <input type="text" name="search" placeholder="Search for Something..." class="form-control" value="@ViewBag.CurrentSearch" />
+            <button type="submit" class="btn btn-secondary">
+                <i class="bi bi-search"></i>
+            </button>
+        </div>
+    </form>
+    <form method="get" asp-controller="Categories" asp-action="Index" class="" style="display:flex;align-items:center;gap:10px">
+        <input type="hidden" name="search" value="@ViewBag.CurrentSearch" />
+        <div style="position:relative; display:flex; flex-direction:column; width:max-content; align-items:center;">
+            <span class="text-muted" style="text-align:center; font-size:12px; position:absolute; top:-30px">sort by name only</span>
+            <div style="display:flex; justify-content:space-between; gap:10px; width:100%">
+                <button type="submit" name="sortOrder" value="asc" class="btn btn-outline-secondary">
+                    ↑
+                </button>
+                <button type="submit" name="sortOrder" value="desc" class="btn btn-outline-secondary">
+                    ↓
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                    <a class="btn btn-primary px-4 py-2" style="font-size:18px;" asp-action="Edit" asp-route-id="@item.Id" title="Edit">
+                        <i class="bi bi-pencil-square"></i>
+                    </a> |
+                    <a class="btn btn-primary px-4 py-2" style="font-size:18px;" asp-action="Details" asp-route-id="@item.Id" title="Details"> <i class="bi bi-list-ul"></i></a> |
+                    <a class="btn btn-primary px-4 py-2" style="font-size:18px;" asp-action="Delete" asp-route-id="@item.Id" title="Delete"><i class="bi bi-trash"></i></a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

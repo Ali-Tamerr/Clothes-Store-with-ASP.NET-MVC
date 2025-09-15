@@ -1,0 +1,52 @@
+﻿@model ITI_Graduation_Project.Models.Category
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Category</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@if (Model.Products != null && Model.Products.Any())
+{
+    <h3 class="mt-4">Products that has this category</h3>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Image</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>For Age</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var c in Model.Products)
+            {
+                <tr>
+                    <td>
+                        <img src="@c.ImagePath" alt="Product image" style="max-width:100px;max-height:100px;" />
+                    </td>
+                    <td><a asp-controller="Products" asp-action="Details" asp-route-id="@c.Id">@c.Name</a></td>
+                    <td>@c.Description</td>
+                    <td>@c.ForAge</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
