@@ -15,8 +15,7 @@ A full-featured online clothes store built with ASP.NET MVC. This project demons
 
 - **Backend:** ASP.NET MVC (C#), Entity Framework
 - **Frontend:** HTML5, CSS3, JavaScript, Bootstrap
-- **Database:** SQL Server (LocalDB or SQL Express)
-- **Authentication:** ASP.NET Identity
+- **Database:** SQL Server
 
 ## Getting Started
 
