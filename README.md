@@ -65,9 +65,9 @@ A full-featured online clothes store built with ASP.NET MVC. This project demons
 ## Screenshots
 
 <!-- Add screenshots/gifs of your app here -->
-![Home Page](docs/screenshots/home.png)
-![Product Page](docs/screenshots/product.png)
-![Admin Dashboard](docs/screenshots/admin.png)
+![Admin Dashboard](docs/screenshots/Screenshot 2025-09-12 141107.png)
+![Client Homepage](docs/screenshots/Screenshot 2025-09-11 210530.png)
+![Accounts list for admin](docs/screenshots/Screenshot 2025-09-12 005827.png)
 
 ## Contributing
 
