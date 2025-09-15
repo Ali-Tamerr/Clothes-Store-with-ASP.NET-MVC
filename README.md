@@ -9,7 +9,6 @@ A full-featured online clothes store built with ASP.NET MVC. This project demons
 - **Shopping Cart:** Add, update, or remove items and view cart summaries.
 - **Order Management:** Checkout, order history, and order tracking for users.
 - **Admin Dashboard:** Manage products, categories, orders, and users.
-- **Responsive Design:** Mobile-friendly UI using HTML5, CSS3, and Bootstrap.
 - **Data Persistence:** Uses Entity Framework with a SQL database.
 
 ## Technologies Used
