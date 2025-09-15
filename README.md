@@ -58,8 +58,6 @@ A full-featured online clothes store built with ASP.NET MVC. This project demons
 - `/Controllers` - MVC controllers for application logic
 - `/Models` - Entity Framework models and view models
 - `/Views` - Razor views (UI)
-- `/Content` - CSS, images, and static files
-- `/Scripts` - JavaScript files
 - `/Migrations` - Entity Framework migrations
 
 ## Screenshots
